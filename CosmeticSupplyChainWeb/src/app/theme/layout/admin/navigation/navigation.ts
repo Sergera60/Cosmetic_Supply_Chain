@@ -45,6 +45,14 @@ const ProcurementNavigationItems = [
         icon: 'feather icon-home',
         classes: 'nav-item',
       },
+       {
+        id: 'chatbot',
+        title: 'Chatbot',
+        type: 'item',
+        url: '/chatbot',
+        icon: 'feather icon-message-circle',
+        classes: 'nav-item',
+      },
     ],
   },
   {
@@ -58,14 +66,14 @@ const ProcurementNavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/procurement/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -111,6 +119,14 @@ const DistributionNavigationItems = [
         icon: 'feather icon-home',
         classes: 'nav-item',
       },
+      {
+        id: 'chatbot',
+        title: 'Chatbot',
+        type: 'item',
+        url: '/chatbot',
+        icon: 'feather icon-message-circle',
+        classes: 'nav-item',
+      },
     ],
   },
   {
@@ -124,14 +140,14 @@ const DistributionNavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/distribution/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -166,6 +182,14 @@ const ProductionNavigationItems = [
         icon: 'feather icon-home',
         classes: 'nav-item',
       },
+      {
+        id: 'chatbot',
+        title: 'Chatbot',
+        type: 'item',
+        url: '/chatbot',
+        icon: 'feather icon-message-circle',
+        classes: 'nav-item',
+      },
     ],
   },
   {
@@ -179,14 +203,14 @@ const ProductionNavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/production/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -221,6 +245,14 @@ const WarehouseNavigationItems = [
         icon: 'feather icon-home',
         classes: 'nav-item',
       },
+      {
+        id: 'chatbot',
+        title: 'Chatbot',
+        type: 'item',
+        url: '/chatbot',
+        icon: 'feather icon-message-circle',
+        classes: 'nav-item',
+      },
     ],
   },
   {
@@ -234,14 +266,14 @@ const WarehouseNavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/warehouse/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -280,6 +312,14 @@ const NavigationItems = [
         icon: 'feather icon-home',
         classes: 'nav-item',
       },
+      {
+        id: 'chatbot',
+        title: 'Chatbot',
+        type: 'item',
+        url: '/chatbot',
+        icon: ' feather icon-message-circle',
+        classes: 'nav-item',
+      },
     ],
   },  {
     id: 'UserManagment',
@@ -316,14 +356,14 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/procurement/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -365,14 +405,14 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/warehouse/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -402,14 +442,14 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/production/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',
@@ -440,14 +480,14 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         url: '/distribution/dashboard',
-        icon: 'feather icon-user',
+        icon: 'feather icon-bar-chart',
         classes: 'nav-item',
       },
       {
         id: 'basic',
         title: 'Prediction',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'feather icon-activity',
         children: [
           {
             id: 'button',

@@ -12,6 +12,8 @@ from api.Distribution.DistributionAPI import DistributionAPI
 from api.Inventory.InventoryAPI import InventoryAPI
 from api.Production.performance_api import PerformanceAPI
 from api.Production.produitdelayed_api import ProductionDelayAPI
+from app_extensions import db ,mail
+from api.ChatBotAPI import chatbot_bp
 
 def create_default_admin_user(db_config: DatabaseConfig):
     """Create a default admin user if it doesn’t exist"""
@@ -40,7 +42,22 @@ def main():
     # Create a single Flask app
     app = Flask(__name__)
     CORS(app)  # Enable CORS for the app
-    
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:159753@localhost:5432/SupplyChain_DW'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
+    app.config['MAIL_USERNAME'] = 'chaymariahi961@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'vdal lyei uuen elqs'
+    app.config['MAIL_DEFAULT_SENDER'] = ('SupplyChain_ChatBot', 'chaymariahi961@gmail.com')
+
+    # === Init Extensions ===
+    db.init_app(app)
+    mail.init_app(app)
+
+    # === Register Routes / APIs ===
+    app.register_blueprint(chatbot_bp)  # Chatbot API
     # Initialize APIs with the shared Flask app
     user_api = UserAPI(app, db_config)
     sarima_api = SarimaAPI(app)

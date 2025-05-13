@@ -39,6 +39,7 @@ import { RisqueComponent } from './demo/Warehouse/risque/risque.component';
 import { FinalStockComponent } from './demo/Warehouse/final-stock/final-stock.component';
 import { PerformanceComponent } from './demo/Production/performance/performance.component';
 import { DelayComponent } from './demo/Production/delay/delay.component';
+import { ChatbotComponent } from './demo/chatbot/chatbot.component';
 
 
 
@@ -74,6 +75,7 @@ import { DelayComponent } from './demo/Production/delay/delay.component';
     FinalStockComponent,
     PerformanceComponent,
     DelayComponent,
+    ChatbotComponent,
    
    
   ],
