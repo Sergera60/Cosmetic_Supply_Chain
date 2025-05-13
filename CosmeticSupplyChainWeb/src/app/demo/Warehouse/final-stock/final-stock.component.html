@@ -1,0 +1,102 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Final Stock Prediction" [options]="false">
+  
+        <hr />
+        <div class="alert alert-info mt-3" role="alert">
+  <strong>Note:</strong> The predicted final stock is based on your inputs: incoming stock, outgoing stock, damaged goods, and storage capacity. This helps anticipate inventory availability and optimize storage space.
+</div>
+        <div class="row">
+          <div class="col-md-6">
+            
+            <form [formGroup]="finalStockForm" (ngSubmit)="onSubmit()">
+              <!-- Explanation -->
+
+  
+              <!-- Stock Entrant -->
+              <div class="form-group">
+                <label for="stockEntrant">Stock Entrant</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stockEntrant"
+                  placeholder="Enter incoming stock"
+                  formControlName="Stock_Entrant"
+                />
+                <div class="text-danger mt-1" *ngIf="finalStockForm.get('Stock_Entrant')?.errors?.['required'] && submitted">
+                  Stock entrant is required
+                </div>
+              </div>
+  
+              <!-- Stock Sortant -->
+              <div class="form-group mt-3">
+                <label for="stockSortant">Stock Sortant</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stockSortant"
+                  placeholder="Enter outgoing stock"
+                  formControlName="Stock_Sortant"
+                />
+                <div class="text-danger mt-1" *ngIf="finalStockForm.get('Stock_Sortant')?.errors?.['required'] && submitted">
+                  Stock sortant is required
+                </div>
+              </div>
+  
+              <!-- Produits Endommagés -->
+              <div class="form-group mt-3">
+                <label for="produitsEndommages">Produits Endommagés</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="produitsEndommages"
+                  placeholder="Enter damaged products"
+                  formControlName="Produits_Endommages"
+                />
+                <div class="text-danger mt-1" *ngIf="finalStockForm.get('Produits_Endommages')?.errors?.['required'] && submitted">
+                  Damaged products are required
+                </div>
+              </div>
+  
+              <!-- Capacity -->
+              <div class="form-group mt-3">
+                <label for="capacity">Capacity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="capacity"
+                  placeholder="Enter capacity"
+                  formControlName="capacity"
+                />
+                <div class="text-danger mt-1" *ngIf="finalStockForm.get('capacity')?.errors?.['required'] && submitted">
+                  Capacity is required
+                </div>
+              </div>
+  
+              <!-- Error Message -->
+              <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+  
+              <!-- Submit and Cancel Buttons -->
+              <div class="mt-4">
+                <button type="submit" class="btn btn-primary" [disabled]="finalStockForm.invalid">Predict</button>
+                <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Cancel</button>
+              </div>
+            </form>
+  
+            <!-- Prediction Result -->
+            <div
+              *ngIf="prediction !== null"
+              class="mt-4 p-3 rounded text-white"
+              style="background-color: #007bff"
+            >
+              <p class="mb-0">
+                <strong>Predicted Final Stock:</strong> {{ prediction | number:'1.2-2' }}
+              </p>
+            </div>
+          </div>
+        </div>
+  
+      </app-card>
+    </div>
+  </div>
+  

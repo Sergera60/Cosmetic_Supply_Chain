@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Basic Component" [options]="false">
+      <h5>{{ isUpdateMode ? 'Update User' : 'Add User' }}</h5>
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Add Mode Form -->
+          <form *ngIf="!isUpdateMode" [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="addEmail">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="addEmail"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                formControlName="email"
+              />
+              <div style="margin-top: 8px; text-align: left;">
+                <span style="color: red; display: block;" *ngIf="addEmail?.errors?.['required'] && submitted">Email is required</span>
+                <span style="color: red; display: block;" *ngIf="addEmail?.errors?.['email'] && submitted">Email must be valid</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="addPassword">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="addPassword"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <div style="margin-top: 8px; text-align: left;">
+                <span style="color: red; display: block;" *ngIf="addPassword?.errors?.['required'] && submitted">Password is required</span>
+                <span style="color: red; display: block;" *ngIf="addPassword?.errors?.['minlength'] && submitted">Password must be at least 6 characters</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="addRole">Role</label>
+              <select
+                class="form-select"
+                id="addRole"
+                aria-label="select example"
+                formControlName="role"
+              >
+                <option value="">Open this select menu</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+              </select>
+              <div style="margin-top: 8px; text-align: left;">
+                <span style="color: red; display: block;" *ngIf="addRole?.errors?.['required'] && submitted">Role is required</span>
+              </div>
+            </div>
+
+            <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">{{ errorMessage }}</div>
+
+            <br>
+            <button type="submit" class="btn btn-primary" [disabled]="addUserForm.invalid">Submit</button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="Navigate()">Cancel</button>
+          </form>
+
+          <!-- Update Mode Form -->
+          <form *ngIf="isUpdateMode" [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="updateEmail">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="updateEmail"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                formControlName="email"
+              />
+              <div style="margin-top: 8px; text-align: left;">
+                <span style="color: red; display: block;" *ngIf="updateEmail?.errors?.['required'] && submitted">Email is required</span>
+                <span style="color: red; display: block;" *ngIf="updateEmail?.errors?.['email'] && submitted">Email must be valid</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="updateRole">Role</label>
+              <select
+                class="form-select"
+                id="updateRole"
+                aria-label="select example"
+                formControlName="role"
+              >
+                <option value="">Open this select menu</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+              </select>
+              <div style="margin-top: 8px; text-align: left;">
+                <span style="color: red; display: block;" *ngIf="updateRole?.errors?.['required'] && submitted">Role is required</span>
+              </div>
+            </div>
+
+            <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">{{ errorMessage }}</div>
+
+            <br>
+            <button type="submit" class="btn btn-primary" [disabled]="updateUserForm.invalid">Update</button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="Navigate()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

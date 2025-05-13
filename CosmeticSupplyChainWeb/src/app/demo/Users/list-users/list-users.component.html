@@ -1,0 +1,36 @@
+<div class="col-xl-12">
+  <app-card
+    cardTitle="Table Header Styling"
+    [options]="false"
+    blockClass="table-border-style"
+  >
+    <div class="table-responsive">
+      <table class="table table-styling">
+        <thead>
+          <tr class="table-primary">
+            <th>#</th>
+            <th>Email</th>
+            <th>Last login</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          <tr *ngFor="let user of users; let i = index">
+            <!-- count the user 1 by 1 -->
+            <th scope="row">{{ i + 1 }}</th>  <!-- This will start counting from 1 -->
+          
+            <td>{{ user.email }}</td>
+            <td>{{ user.last_login }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <button class="btn btn-outline-secondary" routerLink="/update-user/{{user._id}}">Edit</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </app-card>
+</div>

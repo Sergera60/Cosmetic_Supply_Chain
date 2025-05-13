@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Time Series Forecast" [options]="false">
+        <hr />
+        <div class="alert alert-info mt-3" role="alert">
+    <strong>What does this mean?</strong><br />
+    Each row represents the predicted average delivery delay for a future date based on historical patterns.
+    Higher values suggest a higher expected delay for that period, helping you plan inventory and supplier scheduling more effectively.
+  </div>
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="forecastForm" (ngSubmit)="onSubmitForecast()">
+
+              
+              <!-- Steps -->
+              <div class="form-group">
+                <label for="steps">Steps</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="steps"
+                  placeholder="Enter steps"
+                  formControlName="steps"
+                />
+                <div class="text-danger mt-1" *ngIf="forecastForm.get('steps')?.errors?.['required'] && submitted">
+                  Steps are required
+                </div>
+              </div>
+  
+              <!-- Submit Button -->
+              <div class="mt-4">
+                <button type="submit" class="btn btn-primary" [disabled]="forecastForm.invalid">Get Forecast</button>
+              </div>
+            </form>
+  
+            <!-- Forecast Result Table -->
+            <div *ngIf="forecastResults?.length > 0" class="mt-4">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Forecasted Delay (Days)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let forecast of forecastResults">
+                    <td>{{ forecast.date }}</td>
+                    <td>{{ forecast.forecasted_delay_days | number: '1.2-2' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  

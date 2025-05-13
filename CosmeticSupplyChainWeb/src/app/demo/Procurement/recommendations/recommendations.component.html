@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h3>Top Material Recommendations</h3>
+
+  <!-- Display error message if any -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="alert alert-info mt-3" role="alert">
+  <strong>What does this mean?</strong><br />
+  This table displays the top recommended materials along with their most suitable suppliers, ranked based on factors such as delivery performance, price, and delay history. A lower rank number indicates a better match between material and supplier for optimal procurement efficiency.
+</div>
+  <!-- Filter Inputs -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Filter by Material Name" [(ngModel)]="productFilter" />
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Filter by Supplier Name" [(ngModel)]="supplierFilter" />
+    </div>
+  </div>
+
+  <!-- Table displaying recommendations -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Material Name</th>
+        <th>Supplier Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recommendation of filteredRecommendations()">
+        <td>{{ recommendation.rank }}</td>
+        <td>{{ recommendation.productName }}</td>
+        <td>{{ recommendation.supplierName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

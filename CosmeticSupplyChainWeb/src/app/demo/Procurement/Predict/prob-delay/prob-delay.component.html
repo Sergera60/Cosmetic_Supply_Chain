@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Delay Prediction" [options]="false">
+      
+        <hr />
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()">
+              <!-- Quantity -->
+              <div class="form-group">
+                <label for="Quantity">Quantity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="quantity"
+                  placeholder="Enter quantity"
+                  formControlName="Quantity"
+                />
+                <div class="text-danger mt-1" *ngIf="deliveryForm.get('Quantity')?.errors?.['required'] && submitted">
+                  Quantity is required
+                </div>
+              </div>
+  
+              <!-- Average Supplier Delay -->
+              <div class="form-group mt-3">
+                <label for="avgDelay">Supplier Avg Delay (in days)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="avgDelay"
+                  placeholder="Enter average delay"
+                  formControlName="supplier_avg_delay"
+                />
+                <div class="text-danger mt-1" *ngIf="deliveryForm.get('supplier_avg_delay')?.errors?.['required'] && submitted">
+                  Average delay is required
+                </div>
+              </div>
+  
+              <!-- Price per unit -->
+              <div class="form-group mt-3">
+                <label for="price">Price (USD/unit)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  placeholder="Enter price"
+                  formControlName="Price__USD_per_unit"
+                />
+                <div class="text-danger mt-1" *ngIf="deliveryForm.get('Price__USD_per_unit')?.errors?.['required'] && submitted">
+                  Price is required
+                </div>
+              </div>
+  
+              <!-- Delay Cause -->
+              <div class="form-group mt-3">
+                <label for="delayCause">Delay Cause</label>
+                <select
+                  class="form-select"
+                  id="delayCause"
+                  formControlName="Delay_Cause"
+                >
+                  <option value="">Select cause of delay</option>
+                  <option *ngFor="let cause of delayCauses" [value]="cause">{{ cause }}</option>
+                </select>
+                <div class="text-danger mt-1" *ngIf="deliveryForm.get('Delay_Cause')?.errors?.['required'] && submitted">
+                  Delay cause is required
+                </div>
+              </div>
+  
+              <!-- Error Message -->
+              <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+  
+              <!-- Submit Button -->
+              <div class="mt-4">
+                <button type="submit" class="btn btn-primary" [disabled]="deliveryForm.invalid">Predict</button>
+                <button type="button" class="btn btn-secondary ms-2" (click)="Navigate()">Cancel</button>
+              </div>
+            </form>
+  
+            <!-- Prediction Result (Handled by API) -->
+            <div 
+            *ngIf="showResult"
+            class="mt-4 p-3 rounded text-white"
+            [ngStyle]="{
+              'background-color': probability_of_delay*100 > 70 ? '#dc3545' : 
+                                  probability_of_delay*100 > 30 ? '#ffcc00' : 
+                                  '#90ee90'
+            }"
+          >
+            <p class="mb-1"><strong>Delay Prediction:</strong> {{ prediction }}</p>
+            <p class="mb-0"><strong>Probability of Delay:</strong> {{ probability_of_delay }}%</p>
+
+             <small class="d-block mt-2">
+    <em>
+      The prediction indicates whether a delivery is expected to be delayed or on time.
+      The probability helps assess the confidence level: <br />
+      <strong style="color:#ffffff">● High (> 70%)</strong> = Very likely to be delayed, <br />
+      <strong style="color:#ffffff">● Medium (30–70%)</strong> = Risk of delay, monitor closely, <br />
+      <strong style="color:#ffffff">● Low (&lt; 30%)</strong> = Likely to arrive on time.
+    </em>
+  </small>
+          </div>
+          
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  

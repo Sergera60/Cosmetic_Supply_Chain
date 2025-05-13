@@ -1,0 +1,16 @@
+<div class="">
+  <a [routerLink]="['/dashboard/default/']" class="b-brand">
+    <div class="">
+      <img src="assets/images/logo.png" alt="Logo" style="width: 50px; height: 45px;" />
+    </div>
+    <span class="b-title">DataCraft</span>
+  </a>
+  <a
+    href="javascript:"
+    class="mobile-menu"
+    [ngClass]="{ on: navCollapsed }"
+    id="mobile-collapse"
+    (click)="navCollapse()"
+    ><span></span
+  ></a>
+</div>

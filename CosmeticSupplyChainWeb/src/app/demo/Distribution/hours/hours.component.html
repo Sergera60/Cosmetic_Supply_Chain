@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Real-Time Delivery Hours Prediction" [options]="false">
+        <hr />
+        <!-- Explanation -->
+<div class="alert alert-info mt-3" role="alert">
+  <strong>Note:</strong> This form is used to input product-related details like price, average rating, storage conditions, and other factors in order to predict whether the product has a defect. 
+  The prediction result will display the likelihood of two possible outcomes: "No Defect" and "Defect", along with their respective probabilities.
+</div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="hoursForm" (ngSubmit)="onSubmitHours()">
+              <!-- Numeric Inputs -->
+              <div class="form-group" *ngFor="let field of numericFields">
+                <label [for]="field.control">{{ field.label }}</label>
+                <input type="number" class="form-control" [id]="field.control" [formControlName]="field.control" />
+              </div>
+  
+              <!-- Delivery Company Dropdown -->
+              <div class="form-group">
+                <label for="DeliveryCompany">Delivery Company</label>
+                <select class="form-control" id="DeliveryCompany" formControlName="DeliveryCompany">
+                  <option *ngFor="let company of deliveryCompanies" [value]="company">{{ company }}</option>
+                </select>
+              </div>
+  
+              <!-- Order Shipping Address Dropdown -->
+              <div class="form-group">
+                <label for="Order_ShippingAddress">Shipping Address</label>
+                <select class="form-control" id="Order_ShippingAddress" formControlName="Order_ShippingAddress">
+                  <option *ngFor="let address of shippingAddresses" [value]="address">{{ address }}</option>
+                </select>
+              </div>
+  
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="hoursForm.invalid">Predict Hours</button>
+            </form>
+  
+            <!-- Result -->
+            <div *ngIf="predictedHours !== null" class="mt-4 alert alert-success">
+              <strong>Predicted Real-Time Delivery:</strong> {{ predictedHours }} hours
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  

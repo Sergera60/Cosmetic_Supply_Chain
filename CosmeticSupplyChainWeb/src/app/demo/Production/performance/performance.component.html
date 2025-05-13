@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Performance Status" [options]="false">
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <form [formGroup]="performanceForm" (ngSubmit)="onSubmit()">
+
+            <!-- Explanation -->
+<div class="alert alert-info mt-3" role="alert">
+  <strong>Note:</strong> The form collects data on price, issues found, and reason for the performance check. Upon submission, the system evaluates and displays the result with a performance label (e.g., "good" or "bad"), along with a color-coded result (red for bad performance, green for good).
+</div>
+            <!-- Price Z-Score -->
+            <div class="form-group">
+              <label for="price_zscore">Price </label>
+              <input
+                type="number"
+                class="form-control"
+                id="price_zscore"
+                formControlName="price_zscore"
+                placeholder="Enter price"
+              />
+              <div *ngIf="performanceForm.get('price_zscore')?.errors?.['required'] && submitted" class="text-danger mt-1">
+                Required
+              </div>
+            </div>
+
+            <!-- Issues Found (Dropdown) -->
+            <div class="form-group mt-3">
+              <label for="Issues_Found">Issues Found</label>
+              <select
+                class="form-control"
+                id="Issues_Found"
+                formControlName="Issues_Found"
+              >
+                <option value="" disabled selected>Select issue type</option>
+                <option *ngFor="let issue of issueOptions" [value]="issue">{{ issue }}</option>
+              </select>
+              <div *ngIf="performanceForm.get('Issues_Found')?.errors?.['required'] && submitted" class="text-danger mt-1">
+                Required
+              </div>
+            </div>
+
+            <!-- Reason (Dropdown) -->
+            <div class="form-group mt-3">
+              <label for="Reason_x">Reason</label>
+              <select
+                class="form-control"
+                id="Reason_x"
+                formControlName="Reason_x"
+              >
+                <option value="" disabled selected>Select reason</option>
+                <option *ngFor="let reason of reasonOptions" [value]="reason">{{ reason }}</option>
+              </select>
+              <div *ngIf="performanceForm.get('Reason_x')?.errors?.['required'] && submitted" class="text-danger mt-1">
+                Required
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-4">
+              <button type="submit" class="btn btn-primary" [disabled]="performanceForm.invalid">
+                Check Performance
+              </button>
+              <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+            </div>
+          </form>
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+
+          <!-- Result Display -->
+          <div *ngIf="showResult" class="mt-4 p-3 rounded text-white"
+            [ngStyle]="{
+              'background-color': prediction === 0 ? '#dc3545' : '#28a745'
+            }">
+           
+            <p><strong>Label:</strong> {{ label }}</p>
+          </div>
+        </div>
+        
+      </div>
+    </app-card>
+  </div>
+</div>

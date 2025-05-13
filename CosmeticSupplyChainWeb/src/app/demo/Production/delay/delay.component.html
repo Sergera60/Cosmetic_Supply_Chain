@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Delivery Delay Classification" [options]="false">
+      <hr />
+      <div class="alert alert-info mt-3" role="alert">
+  <strong>Note:</strong> This form helps predict delivery delay classification based on the category, brand, and price. If a valid prediction is made, the status and prediction result will be displayed, with color coding for easy identification of delay status (red for delayed and green for on-time).
+</div>
+      <div class="row">
+        <div class="col-md-6">
+          <form [formGroup]="delayForm" (ngSubmit)="onSubmit()">
+            <!-- Categorie -->
+            <div class="form-group">
+              <label for="Categorie">Catégorie</label>
+              <select
+                class="form-select"
+                id="Categorie"
+                formControlName="Categorie"
+              >
+                <option value="">Sélectionner la catégorie</option>
+                <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+              </select>
+              <div *ngIf="delayForm.get('Categorie')?.errors?.['required'] && submitted" class="text-danger mt-1">
+                Champ requis
+              </div>
+            </div>
+
+            <!-- Brand -->
+            <div class="form-group mt-3">
+              <label for="Brand">Marque</label>
+              <select
+                class="form-select"
+                id="Brand"
+                formControlName="Brand"
+              >
+                <option value="">Sélectionner la marque</option>
+                <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+              </select>
+              <div *ngIf="delayForm.get('Brand')?.errors?.['required'] && submitted" class="text-danger mt-1">
+                Champ requis
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="form-group mt-3">
+              <label for="Price">Prix</label>
+              <input
+                type="number"
+                class="form-control"
+                id="Price"
+                formControlName="Price"
+                placeholder="Entrer le prix"
+              />
+              <div *ngIf="delayForm.get('Price')?.errors?.['required'] && submitted" class="text-danger mt-1">
+                Champ requis
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="mt-4">
+              <button type="submit" class="btn btn-primary" [disabled]="delayForm.invalid">Prédire</button>
+              <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Annuler</button>
+            </div>
+          </form>
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+
+          <!-- Result Display -->
+          <div *ngIf="showResult" class="mt-4 p-3 rounded text-white"
+            [ngStyle]="{
+              'background-color': prediction === 1 ? '#dc3545' : '#28a745'
+            }">
+            <p><strong>Statut:</strong> {{ label }}</p>
+            <p><strong>Prédiction:</strong> {{ prediction }}</p>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

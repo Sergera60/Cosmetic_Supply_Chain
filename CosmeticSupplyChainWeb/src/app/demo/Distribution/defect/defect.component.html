@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Defect Prediction" [options]="false">
+        <hr />
+        <!-- Explanation -->
+<div class="alert alert-info mt-3" role="alert">
+  <strong>Note:</strong> The form allows you to input product-related details, such as price, average rating, storage conditions, and other factors to predict whether the product has a defect. The result will show a prediction along with the probability for both "No Defect" and "Defect" outcomes.
+</div>
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="defectForm" (ngSubmit)="onSubmitDefect()">
+  
+              <!-- Price -->
+              <div class="form-group">
+                <label for="Price">Price</label>
+                <input type="number" class="form-control" id="Price" formControlName="Price" step="0.01" />
+              </div>
+  
+              <!-- Average Rating -->
+              <div class="form-group">
+                <label for="Average_Rating">Average Rating</label>
+                <input type="number" class="form-control" id="Average_Rating" formControlName="Average_Rating" step="0.1" min="1" max="5" />
+              </div>
+  
+              <!-- Sensible Dropdown -->
+              <div class="form-group">
+                <label for="Sensible">Sensible</label>
+                <select class="form-control" id="Sensible" formControlName="Sensible">
+                  <option>Oui</option>
+                  <option>Non</option>
+                </select>
+              </div>
+  
+              <!-- Stocker sans lumière Dropdown -->
+              <div class="form-group">
+                <label for="Stocker_sans_lumiere">Stocker sans lumière</label>
+                <select class="form-control" id="Stocker_sans_lumiere" formControlName="Stocker_sans_lumiere">
+                  <option>Oui</option>
+                  <option>Non</option>
+                </select>
+              </div>
+  
+              <!-- Temperature Dropdown -->
+              <div class="form-group">
+                <label for="Temperature">Température</label>
+                <select class="form-control" id="Temperature" formControlName="Temperature">
+                  <option>4-8°C (Réfrigéré)</option>
+                  <option>15-25°C (Température ambiante)</option>
+                </select>
+              </div>
+  
+              <!-- Size Volume (free input) -->
+              <div class="form-group">
+                <label for="Size_Volume">Size / Volume</label>
+                <select class="form-control" id="Size_Volume" formControlName="Size_Volume">
+                    <option *ngFor="let option of sizeVolumeOptions" [value]="option">{{ option }}</option>
+                  </select>
+              </div>
+  
+              <!-- Brand (free input) -->
+              <div class="form-group">
+               
+                <div>
+                    <label for="brand">Brand</label>
+                    <select class="form-control" id="brand" formControlName="Brand" id="brand">
+                      <option *ngFor="let brand of brandOptions" [value]="brand">{{ brand }}</option>
+                    </select>
+                  </div>
+              </div>
+  
+              <!-- Categorie Dropdown -->
+              <div class="form-group">
+                <label for="Categorie">Categorie</label>
+                <select class="form-control" id="Categorie" formControlName="Categorie">
+                  <option>Autre</option>
+                  <option>Soins</option>
+                  <option>Maquillage</option>
+                  <option>Cheveux</option>
+                  <option>Parfums</option>
+                  <option>Hygiène</option>
+                </select>
+              </div>
+  
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="defectForm.invalid">Predict Defect</button>
+            </form>
+  
+            <!-- Result -->
+            <div *ngIf="defectResult" class="mt-4 alert alert-info">
+              <strong>Prediction:</strong> {{ defectResult.prediction }}<br />
+              <strong>Probability:</strong> {{ defectResult.probability[0] | number:'1.2-2' }} (No Defect),
+              {{ defectResult.probability[1] | number:'1.2-2' }} (Defect)
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  
