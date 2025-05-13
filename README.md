@@ -284,4 +284,31 @@ Limited to their respective views and predictive insights.
 Only the Admin can create new users and assign them to one of the available roles.
 
 
-#
+# 📊 Power bi Dashboard
+The application embeds interactive Power BI dashboards across multiple modules, providing tailored visual analytics for each decision-maker. The dashboards are integrated securely using Power BI JavaScript API, with content access controlled based on user roles.
+
+## 📁 Dashboard Structure
+The Power BI report contains 5 main sections, organized as follows:
+1. Dashboard Overview
+   A general performance summary and cross-functional KPIs (1 page)
+
+2. Procurement Management
+   Procurement efficiency metrics, supplier evaluation, delay analysis (1 page)
+
+3. Warehouse Management
+   Stock levels, inventory movements, material shortages (3 pages)
+
+4. Production Management
+   Equipment efficiency, production quality control, delay causes (3 pages)
+
+5. Distribution Management
+   Shipping timelines, distribution network efficiency, delivery delays (3 pages)
+
+##  Narrative & Report Automation
+Additional features include:
+
+  **Narrative Intelligence: Auto-generated textual summaries for key metrics and anomalies using Power BI Smart Narrative.
+
+  **Report Generation: Exporting reports on demand in PDF format.
+
+  **Automated Email Notifications: Sending reports or alerts to designated recipients directly from the platform.
