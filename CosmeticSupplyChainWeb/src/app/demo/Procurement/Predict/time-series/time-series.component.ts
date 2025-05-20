@@ -17,9 +17,9 @@ export class TimeSeriesComponent {
   constructor(private fb: FormBuilder, private procurementService: ProcurementService ,private router: Router,) {}
 
   ngOnInit() {
-    this.forecastForm = this.fb.group({
-      steps: [null, Validators.required]  // Validate that steps are provided
-    });
+   this.forecastForm = this.fb.group({
+  steps: [null, [Validators.required, Validators.min(1)]]
+});
     const role = localStorage.getItem('role') || '';
     // get the role of the user
        console.log(role);

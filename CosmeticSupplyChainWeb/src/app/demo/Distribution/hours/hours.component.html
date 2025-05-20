@@ -15,6 +15,11 @@
               <div class="form-group" *ngFor="let field of numericFields">
                 <label [for]="field.control">{{ field.label }}</label>
                 <input type="number" class="form-control" [id]="field.control" [formControlName]="field.control" />
+                <div *ngIf="hoursForm.get(field.control).invalid && hoursForm.get(field.control).touched" class="text-danger">
+    <small *ngIf="hoursForm.get(field.control).hasError('required')">This field is required.</small>
+    <small *ngIf="hoursForm.get(field.control).hasError('min')">This value cannot be negative</small>
+    <small *ngIf="hoursForm.get(field.control).hasError('max')">Maximum value exceeded.</small>
+  </div>
               </div>
   
               <!-- Delivery Company Dropdown -->

@@ -15,7 +15,7 @@
   
               <!-- Stock Entrant -->
               <div class="form-group">
-                <label for="stockEntrant">Stock Entrant</label>
+                <label for="stockEntrant">Stock in</label>
                 <input
                   type="number"
                   class="form-control"
@@ -24,13 +24,15 @@
                   formControlName="Stock_Entrant"
                 />
                 <div class="text-danger mt-1" *ngIf="finalStockForm.get('Stock_Entrant')?.errors?.['required'] && submitted">
-                  Stock entrant is required
+                  Stock in is required
                 </div>
+                <div class="text-danger" *ngIf="finalStockForm.get('Stock_Entrant')?.errors?.['min'] && submitted">
+                  Incoming stock cannot be negative.</div>
               </div>
   
               <!-- Stock Sortant -->
               <div class="form-group mt-3">
-                <label for="stockSortant">Stock Sortant</label>
+                <label for="stockSortant">Stock out</label>
                 <input
                   type="number"
                   class="form-control"
@@ -39,8 +41,10 @@
                   formControlName="Stock_Sortant"
                 />
                 <div class="text-danger mt-1" *ngIf="finalStockForm.get('Stock_Sortant')?.errors?.['required'] && submitted">
-                  Stock sortant is required
+                  Stock out is required
                 </div>
+                <div class="text-danger" *ngIf="finalStockForm.get('Stock_Sortant')?.errors?.['min'] && submitted">
+                  Outgoing stock cannot be negative.</div>
               </div>
   
               <!-- Produits Endommagés -->
@@ -56,6 +60,8 @@
                 <div class="text-danger mt-1" *ngIf="finalStockForm.get('Produits_Endommages')?.errors?.['required'] && submitted">
                   Damaged products are required
                 </div>
+                <div class="text-danger" *ngIf="finalStockForm.get('Produits_Endommages')?.errors?.['min'] && submitted">
+                  Damaged products cannot be negative.</div>
               </div>
   
               <!-- Capacity -->
@@ -71,6 +77,8 @@
                 <div class="text-danger mt-1" *ngIf="finalStockForm.get('capacity')?.errors?.['required'] && submitted">
                   Capacity is required
                 </div>
+                <div class="text-danger" *ngIf="finalStockForm.get('capacity')?.errors?.['min'] && submitted">
+                  Capacity cannot be negative.</div>
               </div>
   
               <!-- Error Message -->

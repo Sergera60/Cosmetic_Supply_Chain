@@ -16,11 +16,11 @@
                 id="Categorie"
                 formControlName="Categorie"
               >
-                <option value="">Sélectionner la catégorie</option>
+                <option value="">Select category</option>
                 <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
               </select>
               <div *ngIf="delayForm.get('Categorie')?.errors?.['required'] && submitted" class="text-danger mt-1">
-                Champ requis
+                Field is required
               </div>
             </div>
 
@@ -32,17 +32,18 @@
                 id="Brand"
                 formControlName="Brand"
               >
-                <option value="">Sélectionner la marque</option>
+                <option value="">Select brand</option>
                 <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
               </select>
               <div *ngIf="delayForm.get('Brand')?.errors?.['required'] && submitted" class="text-danger mt-1">
-                Champ requis
+                Field is required
               </div>
+
             </div>
 
             <!-- Price -->
             <div class="form-group mt-3">
-              <label for="Price">Prix</label>
+              <label for="Price">Price</label>
               <input
                 type="number"
                 class="form-control"
@@ -51,7 +52,10 @@
                 placeholder="Entrer le prix"
               />
               <div *ngIf="delayForm.get('Price')?.errors?.['required'] && submitted" class="text-danger mt-1">
-                Champ requis
+               Field is required
+              </div>
+              <div *ngIf="delayForm.get('Price')?.errors?.['min']" class="text-danger mt-1">
+                Price can't be negative.
               </div>
             </div>
 
@@ -71,7 +75,7 @@
               'background-color': prediction === 1 ? '#dc3545' : '#28a745'
             }">
             <p><strong>Statut:</strong> {{ label }}</p>
-            <p><strong>Prédiction:</strong> {{ prediction }}</p>
+            
           </div>
         </div>
       </div>

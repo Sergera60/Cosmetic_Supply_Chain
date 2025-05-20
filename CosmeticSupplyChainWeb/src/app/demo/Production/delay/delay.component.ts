@@ -337,7 +337,7 @@ export class DelayComponent implements OnInit {
     this.delayForm = this.fb.group({
       Categorie: ['', Validators.required],
       Brand: ['', Validators.required],
-      Price: ['', Validators.required]
+     Price: [null, [Validators.required, Validators.min(0)]]
     });
 
     const role = localStorage.getItem('role');
@@ -362,6 +362,14 @@ export class DelayComponent implements OnInit {
       (response: any) => {
         this.prediction = response.prediction;
         this.label = response.label;
+        if (response.label=== "À l'heure"){
+          this.label = "On time";
+        }else{
+          this.label = "delayed";
+        }
+
+          
+
         this.showResult = true;
       },
       (error: any) => {

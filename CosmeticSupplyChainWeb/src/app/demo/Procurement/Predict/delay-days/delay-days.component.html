@@ -18,6 +18,7 @@
               <div class="text-danger mt-1" *ngIf="delayForm.get('Quantity')?.errors?.['required'] && submitted">
                 Quantity is required
               </div>
+              <div class="text-danger mt-1" *ngIf="delayForm.get('Quantity')?.errors?.['min']">Quantity can't be negative.</div>
             </div>
 
             <!-- Average Supplier Delay -->
@@ -33,6 +34,7 @@
               <div class="text-danger mt-1" *ngIf="delayForm.get('supplier_avg_delay')?.errors?.['required'] && submitted">
                 Average delay is required
               </div>
+              <div class="text-danger mt-1" *ngIf="delayForm.get('supplier_avg_delay')?.errors?.['min']">supplier_avg_delay can't be negative.</div>
             </div>
 
             <!-- Price per unit -->
@@ -48,6 +50,7 @@
               <div class="text-danger mt-1" *ngIf="delayForm.get('Price__USD_per_unit')?.errors?.['required'] && submitted">
                 Price is required
               </div>
+              <div class="text-danger mt-1" *ngIf="delayForm.get('Price__USD_per_unit')?.errors?.['min']">Price can't be negative.</div>
             </div>
 
             <!-- Delay Cause -->

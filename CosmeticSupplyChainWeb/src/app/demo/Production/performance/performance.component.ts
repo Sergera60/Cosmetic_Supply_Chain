@@ -32,7 +32,7 @@ export class PerformanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.performanceForm = this.fb.group({
-      price_zscore: ['', Validators.required],
+      price_zscore: ['', [Validators.required, Validators.min(0)]],
       Issues_Found: ['', Validators.required],
       Reason_x: ['', Validators.required]
     });

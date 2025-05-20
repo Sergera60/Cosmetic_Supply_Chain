@@ -67,12 +67,12 @@ export class DelayDaysComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.delayForm = this.fb.group({
-      Quantity: [null, Validators.required],
-      supplier_avg_delay: [null, Validators.required],
-      Price__USD_per_unit: [null, Validators.required],
-      Delay_Cause: ['', Validators.required]
-    });
+   this.delayForm = this.fb.group({
+  Quantity: [null, [Validators.required, Validators.min(0)]],
+  supplier_avg_delay: [null, [Validators.required, Validators.min(0)]],
+  Price__USD_per_unit: [null, [Validators.required, Validators.min(0)]],
+  Delay_Cause: ['', [Validators.required]]
+});
 
     const role = localStorage.getItem('role') || '';
     if (role !== 'admin' && role !== 'procurment') {

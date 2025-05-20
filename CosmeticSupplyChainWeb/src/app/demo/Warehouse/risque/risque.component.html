@@ -13,7 +13,7 @@
             <form [formGroup]="risqueForm" (ngSubmit)="predictRisque()">
               <!-- Temperature -->
               <div class="form-group">
-                <label for="temperature">Température</label>
+                <label for="temperature">Temperature</label>
                 <input
                   type="number"
                   class="form-control"
@@ -28,7 +28,7 @@
   
               <!-- Stock Initial -->
               <div class="form-group mt-3">
-                <label for="stockInitial">Stock Initial</label>
+                <label for="stockInitial">Initial Stock </label>
                 <input
                   type="number"
                   class="form-control"
@@ -39,11 +39,14 @@
                 <div class="text-danger mt-1" *ngIf="risqueForm.get('Stock_Initial')?.errors?.['required'] && submitted">
                   Le stock initial est requis
                 </div>
+                <div class="text-danger" *ngIf="risqueForm.get('Stock_Initial')?.errors?.['min'] && submitted">
+  Initial stock cannot be negative.
+</div>
               </div>
   
               <!-- Stock Entrant -->
               <div class="form-group mt-3">
-                <label for="stockEntrant">Stock Entrant</label>
+                <label for="stockEntrant">Stock In</label>
                 <input
                   type="number"
                   class="form-control"
@@ -54,11 +57,14 @@
                 <div class="text-danger mt-1" *ngIf="risqueForm.get('Stock_Entrant')?.errors?.['required'] && submitted">
                   Le stock entrant est requis
                 </div>
+                  <div class="text-danger" *ngIf="risqueForm.get('Stock_Entrant')?.errors?.['min'] && submitted">
+  Stock In cannot be negative.
+</div>
               </div>
   
               <!-- Stock Sortant -->
               <div class="form-group mt-3">
-                <label for="stockSortant">Stock Sortant</label>
+                <label for="stockSortant">Stock out</label>
                 <input
                   type="number"
                   class="form-control"
@@ -69,6 +75,9 @@
                 <div class="text-danger mt-1" *ngIf="risqueForm.get('Stock_Sortant')?.errors?.['required'] && submitted">
                   Le stock sortant est requis
                 </div>
+                <div class="text-danger" *ngIf="risqueForm.get('Stock_Sortant')?.errors?.['min'] && submitted">
+  Stock Out cannot be negative.
+</div>
               </div>
   
               <!-- Error Message -->
@@ -89,16 +98,16 @@
                 'background-color': risqueResult.prediction === 1 ? '#dc3545' : '#90ee90'
               }"
             >
-              <p class="mb-1"><strong>Résultat :</strong> {{ risqueResult.prediction === 1 ? 'À Risque' : 'Pas Risque' }}</p>
+              <p class="mb-1"><strong>Result :</strong> {{ risqueResult.prediction === 1 ? 'There is risk' : 'There is no risk' }}</p>
 
               
               <p class="mb-0">
-                <strong>Probabilité À Risque :</strong> {{
+                <strong>probability with risk :</strong> {{
 
                   (risqueResult.probabilities['A_Risque (1)'] * 100) | number : '1.0-2'
                 }}%
                 <br />
-                <strong>Probabilité Pas Risque :</strong> {{
+                <strong>probability with no risk :</strong> {{
                   (risqueResult.probabilities['Pas_Risque (0)'] * 100) | number : '1.0-2'
                 }}%
               </p>

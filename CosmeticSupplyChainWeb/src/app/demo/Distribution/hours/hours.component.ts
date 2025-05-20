@@ -64,19 +64,20 @@ export class HoursComponent implements OnInit {
   constructor(private fb: FormBuilder,private dist:DistributionService ,private router: Router ) {}
 
   ngOnInit(): void {
-    this.hoursForm = this.fb.group({
-      Distance_km: [null, Validators.required],
-      Estimated_Time_Hours: [null, Validators.required],
-      Quantity: [20, Validators.required ],
-      Price_TND: [null, Validators.required],
-      Customer_Satisfaction_Score: [
-        null,
-        [Validators.required, Validators.min(1), Validators.max(5)]
-      ],
-      _Product_Damaged: [null, Validators.required],
-      DeliveryCompany: ['', Validators.required],
-      Order_ShippingAddress: ['', Validators.required]
-    });
+   this.hoursForm = this.fb.group({
+  Distance_km: [null, [Validators.required, Validators.min(0)]],
+  Estimated_Time_Hours: [null, [Validators.required, Validators.min(0)]],
+  Quantity: [20, [Validators.required, Validators.min(1)]],  // Assuming Quantity must be >= 1
+  Price_TND: [null, [Validators.required, Validators.min(0)]],  // Price should not be negative
+  Customer_Satisfaction_Score: [
+    null,
+    [Validators.required, Validators.min(1), Validators.max(5)]  // Score between 1 and 5
+  ],
+  _Product_Damaged: [null, [Validators.required, Validators.min(0)]],
+  DeliveryCompany: ['', Validators.required],
+  Order_ShippingAddress: ['', Validators.required]
+});
+
     const role = localStorage.getItem('role') || '';
     // get the role of the user
        console.log(role);

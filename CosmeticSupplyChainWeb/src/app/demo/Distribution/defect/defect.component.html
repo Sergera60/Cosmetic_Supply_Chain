@@ -11,16 +11,24 @@
             <form [formGroup]="defectForm" (ngSubmit)="onSubmitDefect()">
   
               <!-- Price -->
-              <div class="form-group">
-                <label for="Price">Price</label>
-                <input type="number" class="form-control" id="Price" formControlName="Price" step="0.01" />
-              </div>
-  
+             <div class="form-group">
+    <label for="Price">Price</label>
+    <input type="number" class="form-control" id="Price" formControlName="Price" />
+    <div *ngIf="defectForm.get('Price').invalid && defectForm.get('Price').touched" class="text-danger">
+      <small *ngIf="defectForm.get('Price').hasError('required')">Price is required.</small>
+      <small *ngIf="defectForm.get('Price').hasError('min')">Price cannot be negative</small>
+    </div>
+  </div>
               <!-- Average Rating -->
               <div class="form-group">
-                <label for="Average_Rating">Average Rating</label>
-                <input type="number" class="form-control" id="Average_Rating" formControlName="Average_Rating" step="0.1" min="1" max="5" />
-              </div>
+    <label for="Average_Rating">Average Rating (1-5)</label>
+    <input type="number" class="form-control" id="Average_Rating" formControlName="Average_Rating" />
+    <div *ngIf="defectForm.get('Average_Rating').invalid && defectForm.get('Average_Rating').touched" class="text-danger">
+      <small *ngIf="defectForm.get('Average_Rating').hasError('required')">Average Rating is required.</small>
+      <small *ngIf="defectForm.get('Average_Rating').hasError('min')">Rating must be between 1 and 5.</small>
+      <small *ngIf="defectForm.get('Average_Rating').hasError('max')">Rating must be between 1 and 5.</small>
+    </div>
+  </div>
   
               <!-- Sensible Dropdown -->
               <div class="form-group">
@@ -86,7 +94,10 @@
   
             <!-- Result -->
             <div *ngIf="defectResult" class="mt-4 alert alert-info">
-              <strong>Prediction:</strong> {{ defectResult.prediction }}<br />
+              <strong>Prediction:</strong> 
+<span *ngIf="defectResult.prediction === 1">Product Defected</span>
+<span *ngIf="defectResult.prediction === 0">Product Not Defected</span>
+<br />
               <strong>Probability:</strong> {{ defectResult.probability[0] | number:'1.2-2' }} (No Defect),
               {{ defectResult.probability[1] | number:'1.2-2' }} (Defect)
             </div>

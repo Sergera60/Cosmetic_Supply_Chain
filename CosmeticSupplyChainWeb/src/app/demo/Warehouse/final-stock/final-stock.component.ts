@@ -15,15 +15,22 @@ export class FinalStockComponent implements OnInit {
   prediction: number | null = null;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient , private inv:InventoryService) {}
+  constructor(private fb: FormBuilder, private http: HttpClient , private inv:InventoryService , private router:Router) {}
 
   ngOnInit(): void {
     this.finalStockForm = this.fb.group({
-      Stock_Entrant: [null, Validators.required],
-      Stock_Sortant: [null, Validators.required],
-      Produits_Endommages: [null, Validators.required],
-      capacity: [null, Validators.required]
-    });
+  Stock_Entrant: [null, [Validators.required, Validators.min(0)]],
+  Stock_Sortant: [null, [Validators.required, Validators.min(0)]],
+  Produits_Endommages: [null, [Validators.required, Validators.min(0)]],
+  capacity: [null, [Validators.required, Validators.min(0)]]
+});
+    const role = localStorage.getItem('role') || '';
+    // get the role of the user
+       console.log(role);
+       // Check if the role is not 'admin' or 'procurement' redirect to the dashboard or not and 
+       if( role !== 'admin' && role !== 'inventory'){
+         this.router.navigate(['/dashboard']);
+       }
   }
 
   onSubmit(): void {

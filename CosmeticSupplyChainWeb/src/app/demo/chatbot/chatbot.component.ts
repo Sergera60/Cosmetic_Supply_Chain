@@ -10,7 +10,7 @@ export class ChatbotComponent {
 
     userInput = '';
   messages = [
-    { text: 'Hello! How can I help you today?', isUser: false },
+    { text: 'Salut comme puis-je vous aidez ?', isUser: false },
   ];
 
   constructor(private http: HttpClient) {}

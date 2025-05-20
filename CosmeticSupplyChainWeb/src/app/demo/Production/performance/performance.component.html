@@ -23,6 +23,8 @@
               <div *ngIf="performanceForm.get('price_zscore')?.errors?.['required'] && submitted" class="text-danger mt-1">
                 Required
               </div>
+              <div *ngIf="performanceForm.get('price_zscore')?.errors?.['min']" class="text-danger mt-1">
+                Price can't be negative.</div>
             </div>
 
             <!-- Issues Found (Dropdown) -->

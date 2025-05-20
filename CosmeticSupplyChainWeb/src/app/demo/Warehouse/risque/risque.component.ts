@@ -16,12 +16,12 @@ export class RisqueComponent implements OnInit{
   constructor(private fb: FormBuilder, private inv: InventoryService , private router:Router) {}
 
   ngOnInit(): void {
-    this.risqueForm = this.fb.group({
-      Temperature: [0, Validators.required],
-      Stock_Initial: [0, Validators.required],
-      Stock_Entrant: [0, Validators.required],
-      Stock_Sortant: [0, Validators.required]
-    });
+   this.risqueForm = this.fb.group({
+  Temperature: [, [Validators.required]],  // Can be negative, so no min validator
+  Stock_Initial: [, [Validators.required, Validators.min(0)]],
+  Stock_Entrant: [, [Validators.required, Validators.min(0)]],
+  Stock_Sortant: [, [Validators.required, Validators.min(0)]]
+});
     const role = localStorage.getItem('role') || '';
     // get the role of the user
        console.log(role);

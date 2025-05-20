@@ -62,11 +62,11 @@ export class ProbDelayComponent  implements OnInit{
 
   ngOnInit(): void {
     this.deliveryForm = this.fb.group({
-      Quantity: [null, Validators.required],
-      supplier_avg_delay: [null, Validators.required],
-      Price__USD_per_unit: [null, Validators.required],
-      Delay_Cause: ['', Validators.required]
-    });
+  Quantity: [null, [Validators.required, Validators.min(0)]],
+  supplier_avg_delay: [null, [Validators.required, Validators.min(0)]],
+  Price__USD_per_unit: [null, [Validators.required, Validators.min(0)]],
+  Delay_Cause: ['', [Validators.required]]
+})
 
     const role = localStorage.getItem('role') || '';
    // get the role of the user
@@ -97,7 +97,11 @@ export class ProbDelayComponent  implements OnInit{
     this.procService.getProbabilityofDelay(formData,token).subscribe(
       (response: any) => {
         console.log(response);
-        this.prediction = response.prediction;
+        if(response.prediction === 'Yes') {
+        this.prediction = "Yes";}
+        else {
+          this.prediction = "No";
+        }
         this.probability_of_delay = response.probability_of_delay;
         this.showResult = true;
       },

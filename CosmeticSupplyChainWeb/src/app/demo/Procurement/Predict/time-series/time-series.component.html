@@ -25,6 +25,9 @@
                 <div class="text-danger mt-1" *ngIf="forecastForm.get('steps')?.errors?.['required'] && submitted">
                   Steps are required
                 </div>
+                <div class="text-danger" *ngIf="forecastForm.get('steps')?.errors?.['min'] && submitted">
+  Forecast steps must be at least 1.
+</div>
               </div>
   
               <!-- Submit Button -->
