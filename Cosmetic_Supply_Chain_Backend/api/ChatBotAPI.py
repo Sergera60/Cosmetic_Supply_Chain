@@ -18,7 +18,7 @@ def chatbot():
     user_message = request.json.get('message')
     if user_message.strip().lower() == 'confirmer':
         try:
-            send_confirmation_email('chaymariahi961@gmail.com')
+            send_confirmation_email('mohamedazizbouslama@gmail.com')
             return jsonify({'response': "Commande confirmée ! Un email a été envoyé."})
         except Exception as e:
             print(e)
